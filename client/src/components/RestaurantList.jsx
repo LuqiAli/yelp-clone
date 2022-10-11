@@ -45,12 +45,15 @@ const RestaurantList = (props) => {
     }
     
     const renderRating = (restaurant) => {
+        console.log(restaurant)
 
         if (!restaurant.count) {
             return (
                 <span className="text-warning ml-1">0 reviews</span>
             )
         } else {
+
+            
             return (
                 <>
                     <StarRating rating={restaurant.average_rating}/>

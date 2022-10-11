@@ -3,16 +3,11 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const db = require("./db");
-const path = require("path");
 const morgan = require("morgan");
 
 app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
-}
 
 app.get("/api/v1/restaurants", async (req, res) => {
   try {
@@ -110,10 +105,6 @@ app.post("/api/v1/restaurants/:id/addReview", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-});
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 const port = process.env.PORT || 3001;
