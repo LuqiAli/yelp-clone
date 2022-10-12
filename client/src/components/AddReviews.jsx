@@ -1,12 +1,13 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import RestaurantFinder from '../apis/RestaurantFinder'
 
-const AddReviews = () => {
+const AddReviews = ({reviews, updateReviews}) => {
     const {id} = useParams()
     const history = useNavigate()
-    const location = useLocation()
+    // const location = useLocation()
 
     const [name, setName] = useState("")
     const [reviewText, setReviewText] = useState("")
@@ -20,11 +21,17 @@ const AddReviews = () => {
                 review: reviewText,
                 rating
             })
-            history(location.pathname)
+
+            updateReviews([...reviews, response.data.data.review])
+            
         } catch (err) {
             console.log(err)
         }
     }
+
+    useEffect(() => {
+        console.log()
+    }, [])
     
   return (
     <div className='mb-2'>

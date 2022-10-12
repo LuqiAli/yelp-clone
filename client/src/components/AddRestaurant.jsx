@@ -11,7 +11,6 @@ const AddRestaurant = () => {
     const [priceRange, setPriceRange] = useState("Price Range")
 
     const handleSubmit = async (e) => {
-        console.log("hi")
         e.preventDefault()
         try {
             const response = await RestaurantFinder.post("/", {
