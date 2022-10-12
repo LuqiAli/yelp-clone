@@ -11,6 +11,8 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 
+console.log(process.env.HOME);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 }
